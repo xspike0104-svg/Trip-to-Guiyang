@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Temporary files
+temp_*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Config files (may contain sensitive data)
+.openclaw/
+.clawhub/
+
+# Large files
+*.pdf
+*.zip
+*.bmp
+
+# Downloads
+downloads/
