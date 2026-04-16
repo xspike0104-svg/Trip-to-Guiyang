@@ -338,10 +338,10 @@ function openMap(name,address){currentLocation=name;currentAddress=address;docum
 function closeMapModal(){document.getElementById('mapModal').classList.remove('active')}
 function getEncodedAddress(){return encodeURIComponent(currentAddress)}
 function getEncodedName(){return encodeURIComponent(currentLocation)}
-function openGaodeMap(){window.location.href='iosamap://navi?sourceName='+getEncodedName()+'&lat=&lng=&dev=1'}
-function openTencentMap(){window.location.href='qqmap://map/routeplan?type=drive&to='+getEncodedName()+'&tocoord=&coord_type=gcj02'}
-function openAppleMap(){window.location.href='http://maps.apple.com/?daddr='+getEncodedAddress()+'&dirflg=d'}
-function openBaiduMap(){window.location.href='baidumap://map/direction?destination='+getEncodedAddress()}
+function openGaodeMap(){window.location.href='https://uri.amap.com/navigation?to='+getEncodedName()+','+getEncodedAddress()+'&mode=car&src=guizhou-trip'}
+function openTencentMap(){window.location.href='https://apis.map.qq.com/uri/v1/marker?ref=guizhou-trip&query='+getEncodedName()}
+function openAppleMap(){window.location.href='https://maps.apple.com/?daddr='+getEncodedAddress()+'&dirflg=d&t=1'}
+function openBaiduMap(){window.location.href='https://api.map.baidu.com/direction?destination='+getEncodedName()+'&mode=driving&output=html&src=guizhou-trip'}
 function showTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.querySelector('.tab[onclick="showTab(\''+id+'\')"]').classList.add('active');document.getElementById(id).classList.add('active')}
 const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});document.querySelectorAll('.card').forEach(c=>observer.observe(c));
 document.querySelectorAll('.nav a').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const id=this.getAttribute('href').slice(1);const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})})});
