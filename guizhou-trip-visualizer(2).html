@@ -313,9 +313,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <div class="map-modal" id="mapModal">
   <div class="map-modal-content">
     <div class="map-modal-title" id="mapModalTitle">📍 地点</div>
+    <div class="map-option" onclick="openMeituan()">
+      <div class="name">🍕 美团</div>
+      <div class="app">查看商家信息、优惠团购</div>
+    </div>
+    <div class="map-option" onclick="openDianping()">
+      <div class="name">⭐ 大众点评</div>
+      <div class="app">查看真实点评、排行榜</div>
+    </div>
     <div class="map-option" onclick="openAppleMap()">
       <div class="name">🍎 Apple 地图</div>
-      <div class="app">在苹果地图中打开</div>
+      <div class="app">导航到此处</div>
     </div>
     <button class="map-close" onclick="closeMapModal()">关闭</button>
   </div>
@@ -327,6 +335,21 @@ let currentLocation='';let currentAddress='';
 function openMap(name,address){currentLocation=name;currentAddress=address;document.getElementById('mapModalTitle').textContent='📍 '+name;document.getElementById('mapModal').classList.add('active')}
 function closeMapModal(){document.getElementById('mapModal').classList.remove('active')}
 function getEncodedAddress(){return encodeURIComponent(currentAddress)}
+function getCityFromAddress(){var cityMap={'贵阳市':'贵阳','黔南州':'黔南','遵义市':'遵义','安顺市':'安顺','黔东南':'黔东南','黔西南':'黔西南'};for(var key in cityMap){if(currentAddress.indexOf(key)!==-1)return cityMap[key]}return '贵阳'}
+
+// 美团搜索
+function openMeituan(){
+  var city = getCityFromAddress();
+  var url = 'https://m.meituan.com/s/' + encodeURIComponent(currentLocation);
+  window.location.href = url;
+}
+
+// 大众点评搜索
+function openDianping(){
+  var city = getCityFromAddress();
+  var url = 'https://m.dianping.com/search/keyword/' + encodeURIComponent(city) + '/10_' + encodeURIComponent(currentLocation);
+  window.location.href = url;
+}
 function getEncodedName(){return encodeURIComponent(currentLocation)}
 // 高德地图已移除
 // 腾讯地图已移除
