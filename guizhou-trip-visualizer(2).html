@@ -311,25 +311,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 <a href="#day5"><span>📅</span>Day5</a>
 </nav>
 <div class="map-modal" id="mapModal">
-<div class="map-modal-content">
-<div class="map-modal-title" id="mapModalTitle">📍 甲秀楼</div>
-<div class="map-option" onclick="openGaodeMap()">
-<div class="name">🗺️ 高德地图</div>
-<div class="app">推荐使用，导航精准</div>
+  <div class="map-modal-content">
+    <div class="map-modal-title" id="mapModalTitle">📍 地点</div>
+    <div class="map-option" onclick="openAppleMap()">
+      <div class="name">🍎 Apple 地图</div>
+      <div class="app">在苹果地图中打开</div>
+    </div>
+    <button class="map-close" onclick="closeMapModal()">关闭</button>
+  </div>
 </div>
-<div class="map-option" onclick="openTencentMap()">
-<div class="name">🗺️ 腾讯地图</div>
-<div class="app">微信内使用方便</div>
-</div>
-<div class="map-option" onclick="openAppleMap()">
-<div class="name">🍎 Apple地图</div>
-<div class="app">iPhone自带</div>
-</div>
-<div class="map-option" onclick="openBaiduMap()">
-<div class="name">🗺️ 百度地图</div>
-<div class="app">中文搜索强</div>
-</div>
-<button class="map-close" onclick="closeMapModal()">关闭</button>
 </div>
 </div>
 <script>
@@ -338,10 +328,10 @@ function openMap(name,address){currentLocation=name;currentAddress=address;docum
 function closeMapModal(){document.getElementById('mapModal').classList.remove('active')}
 function getEncodedAddress(){return encodeURIComponent(currentAddress)}
 function getEncodedName(){return encodeURIComponent(currentLocation)}
-function openGaodeMap(){window.location.href='https://uri.amap.com/navigation?to='+getEncodedName()+','+getEncodedAddress()+'&mode=car&src=guizhou-trip'}
-function openTencentMap(){window.location.href='https://apis.map.qq.com/uri/v1/marker?ref=guizhou-trip&query='+getEncodedName()}
+// 高德地图已移除
+// 腾讯地图已移除
 function openAppleMap(){window.location.href='https://maps.apple.com/?daddr='+getEncodedAddress()+'&dirflg=d&t=1'}
-function openBaiduMap(){window.location.href='https://api.map.baidu.com/direction?destination='+getEncodedName()+'&mode=driving&output=html&src=guizhou-trip'}
+// 百度地图已移除
 function showTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.querySelector('.tab[onclick="showTab(\''+id+'\')"]').classList.add('active');document.getElementById(id).classList.add('active')}
 const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});document.querySelectorAll('.card').forEach(c=>observer.observe(c));
 document.querySelectorAll('.nav a').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const id=this.getAttribute('href').slice(1);const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})})});
